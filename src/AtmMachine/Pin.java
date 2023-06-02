@@ -22,6 +22,12 @@ public class Pin {
      */
     public String gettingName(int userPin){
         return name.get(userPin);
+    }
 
+    public void updatePin(int oldUserPin, int newUserPin) {
+        String oldValue = name.get(oldUserPin);
+        name.remove(oldUserPin);
+        name.put(newUserPin, oldValue);
+        System.out.println("Sumaaa");
     }
 }
