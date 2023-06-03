@@ -12,7 +12,7 @@ public class AtmMachine {
     /**
      * working method
      */
-    private void working() {
+    private void working()  {
         System.out.println("Welcome to Our Bank, Insert Your Card");
         Pin pin = new Pin();
 
@@ -59,7 +59,12 @@ public class AtmMachine {
                         balanceEnq(userPin, deposit);
                         break;
                     case 3:
-                        withDraw(deposit, sc, userPin);
+                        try {
+                            withDraw(deposit, sc, userPin);
+                        }
+                        catch (Exception exception){
+                            System.out.println(exception);
+                        }
                         break;
                     case 4:
                         pinChange(sc, userPin, pin);
@@ -92,13 +97,18 @@ public class AtmMachine {
         }
     }
 
-    private void withDraw(Deposit deposit, Scanner sc, int userPin) {
+    private void withDraw(Deposit deposit, Scanner sc, int userPin) throws Exception {
+
         //Withdraw amount
         deposit = new Deposit();
         System.out.println("Enter the amount to withdraw...");
         double withdrawAmount = sc.nextDouble();
+        if (withdrawAmount> deposit.avail_balance(userPin)){
+            throw new Exception ("Entered amount is greater than available balance");
+        }
         withdrawAmount = deposit.avail_balance(userPin) - withdrawAmount;
         System.out.println("Available Balance is: " + withdrawAmount);
+
     }
 
     private void pinChange(Scanner sc, int userPin, Pin pin) {
