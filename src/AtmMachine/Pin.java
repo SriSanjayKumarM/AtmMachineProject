@@ -20,7 +20,7 @@ public class Pin {
      * @param userPin pin entered by the user
      * @return name of the user
      */
-    public String gettingName(int userPin){
+    public String getName(int userPin){
         return name.get(userPin);
     }
 
@@ -28,6 +28,5 @@ public class Pin {
         String oldValue = name.get(oldUserPin);
         name.remove(oldUserPin);
         name.put(newUserPin, oldValue);
-        System.out.println("Sumaaa");
     }
 }
