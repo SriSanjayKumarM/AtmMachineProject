@@ -18,51 +18,60 @@ public class AtmMachine {
 
         //scanner
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter Your Pin...");
-        int userPin = sc.nextInt();
 
-        /**
-         * accessing getName method in Pin class to get name of the user
-         */
+        int count = 0;
+        while (count < 3) {
 
-        String name = pin.getName(userPin); //invoking getName method
+            System.out.println("Enter Your Pin...");
+            int userPin = sc.nextInt();
+            /**
+             * accessing getName method in Pin class to get name of the user
+             */
 
-        /**
-         * to show the pin entered by user is wrong
-         */
-        if (name == null) {
-            System.out.println("Wrong Pin");
-            System.exit(0);
+            String name = pin.getName(userPin); //invoking getName method
+
+            /**
+             * to show the pin entered by user is wrong
+             */
+            if (name == null) {
+                System.out.println("Wrong Pin...");
+                count++;
+            }
+            /**
+             * if pin is right it prints the name of the user
+             */
+            else {
+                System.out.println("Welcome " + name + ", Select any one option...");
+                /**
+                 * printing deposit, bal enq, withdraw and pin change options
+                 */
+                System.out.println("1-Deposit, 2-Balance Enquiry, 3-Withdraw, 4-Pin Change");
+                int options = sc.nextInt();
+                Deposit deposit = new Deposit();
+                /**
+                 * Switch Case
+                 */
+                switch (options) {
+                    case 1:
+                        depositAmount(deposit, sc, userPin);
+                        break;
+                    case 2:
+                        balanceEnq(userPin, deposit);
+                        break;
+                    case 3:
+                        withDraw(deposit, sc, userPin);
+                        break;
+                    case 4:
+                        pinChange(sc, userPin, pin);
+                        break;
+                }
+                break;
+            }
         }
-        /**
-         * if pin is right it prints the name of the user
-         */
-        else {
-            System.out.println("Welcome " + name + ", Select any one option...");
+        if (count == 3) {
+            System.out.println("Your Card is Blocked, Contact your nearby Branch");
         }
-        /**
-         * printing deposit, bal enq, withdraw and pin change options
-         */
-        System.out.println("1-Deposit, 2-Balance Enquiry, 3-Withdraw, 4-Pin Change");
-        int options = sc.nextInt();
-        Deposit deposit = new Deposit();
-        /**
-         * Switch Case
-         */
-        switch (options) {
-            case 1:
-                depositAmount(deposit, sc, userPin);
-                break;
-            case 2:
-                balanceEnq(userPin, deposit);
-                break;
-            case 3:
-                withDraw(deposit, sc, userPin);
-                break;
-            case 4:
-                pinChange(sc, userPin, pin);
-                break;
-        }
+        System.exit(0);
     }
 
     private void depositAmount(Deposit deposit, Scanner sc, int userPin) {
