@@ -10,9 +10,9 @@ public class Pin {
      * to verify the name of the user with pin
      */
     public  Pin(){
-        name.put(1111,"Ssk");
-        name.put(2222,"Arun");
-        name.put(3333,"Anu");
+        name.put(1111,"Captain America");
+        name.put(2222,"Iron Man");
+        name.put(3333,"Dr. Strange");
     }
 
     /**

@@ -22,7 +22,7 @@ public class AtmMachine {
         int count = 0;
         while (count < 3) {
 
-            System.out.println("Enter Your Pin...");
+            System.out.println("Enter Your Pin... (ie., 1111 or 2222 or 3333)");
             int userPin = sc.nextInt();
             /**
              * accessing getName method in Pin class to get name of the user
